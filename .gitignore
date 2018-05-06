@@ -1,0 +1,10 @@
+#ignore all exclude .tex
+*.log
+*.aux
+*.pdf
+*.toc
+*.bbl
+*.blg
+*.xml
+*.mf
+*-blx.bib

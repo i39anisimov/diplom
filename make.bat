@@ -1,0 +1,1 @@
+pdflatex diplom && pdflatex diplom && del *.log && del *.aux  && del *.toc && del *.bbl && del *.blg && del *.xml && del *.mf && del *-blx.bib && del *-to.pdf

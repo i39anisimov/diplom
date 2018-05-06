@@ -1,0 +1,387 @@
+﻿\documentclass[oneside, final, 14pt]{extreport}
+\usepackage{amsthm, amsfonts, amsmath, amssymb, amscd}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{cite}
+\usepackage{psfrag}
+
+\IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}    %
+
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=1cm]{geometry}
+
+\linespread{1.3}
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+\includegraphics[width=8cm, height=4cm]{MSU}
+\end{center}
+\begin{center}
+Московский государственный университет имени М.В. Ломоносова\\
+\vspace{0.1 cm}
+Факультет вычислительной математики и кибернетики\\
+\vspace{0.1 cm}
+Кафедра функционального анализа и его применений
+
+\vspace{2cm}
+{\large Анисимов Иван Александрович}\\
+\vspace{1cm}
+
+{\bf\Large Полнота системы синусов с комплексным параметром в пространстве функций интегрируемых по Лебегу}
+\\ \vspace{2cm}
+МАГИСТЕРСКАЯ ДИССЕРТАЦИЯ
+
+\end{center}
+ \vspace{2cm}
+\begin{flushright}
+
+{\bf Научный руководитель:}\\
+Академик РАН, д-р. ф.-м.н.,\\
+профессор Е.\,И. Моисеев
+
+\end{flushright}
+
+ \vspace{2cm}
+
+\centerline {Москва, 2018}
+
+\end{titlepage}
+
+\tableofcontents
+
+%-------------------------------
+\newcommand\sincoeffs{\int\limits_0^{\pi}\sin(n - \frac{\beta}{2})xdx,
+	\enspace n = 1, 2, \dots}
+\newcommand\sinCNull{\int\limits_0^{\pi}f(x)\sin(n - \frac{\beta}{2})xdx = 0,
+	\enspace n = 1, 2, \dots}
+\newcommand\mainFunc{f_0(x) = \cos(\frac{x}{2})^{-\beta-1}\sin(\frac{x}{2})}
+\newcommand\msin[1]{\sin(n - \frac{\beta}{2})#1}
+\newcommand\mcos[1]{\cos(n - \frac{\beta}{2})#1}
+\newcommand\mCoeff{n - \frac{\beta}{2}}
+\newcommand\Real{\operatorname{Re}}
+\newcommand\Imag{\operatorname{Im}}
+%-------------------------------
+
+
+
+
+
+\setcounter{chapter}{1}
+\chapter*{Введение}
+\addcontentsline{toc}{chapter}{Введение}
+
+\section{История вопроса и актуальность темы}
+Настоящая работа посвящена изучению свойств неортогональных систем синусов и косинусов в пространствах Лебега:
+\begin{equation}
+	\msin{x} \enspace n = 1, 2, \dots, \tag{I}\label{eq:I}
+\end{equation}
+\begin{equation}
+	\mcos{x} \enspace n = 0, 1, 2, \dots \tag{II}\label{eq:II}
+\end{equation}
+
+Системы \eqref{eq:I}, \eqref{eq:II} в случае $\beta = 0$ хорошо изучены. Они подробно освещены в монографиях
+А.~Зигмунда \cite{zigmund} и Н.~К.~Бари \cite{bari}. Случаю, когда $\beta \neq 0$, посвящены работы 
+Н.~Винера, Р.~Пэли \cite{paley-wiener}, М.~И.~Кадеца \cite{kadec}, Е.~И.~Моисеева \cite{moiseev-dan}, 
+Г.~Г.~Девдариани \cite{devdariani}, А.~М.~Седлецкого \cite{moiseev-sedleckiy}.
+
+Научный интерес к изучению систем \eqref{eq:I} и \eqref{eq:II} не ограничивается лишь теоретическими вопросами. 
+Рассматриваемые системы имеют важное приложение в краевых задачах для уравнения смешанного типа.
+В 20-х годах XX века Ф.~Трикоми \cite{trikomi} положил начало исследования данных уравнений. 
+Впервые задача нахождения решения уравнения смешанного типа в
+смешанной области была поставлена и исследована для уравнения
+$$yu_{xx} + u_{yy} = 0,$$
+которое сейчас называют уравнением Трикоми.
+
+Исследования были продолжены в 30-е годы М.~Чибрарио и С.~Геллерстедтом. 
+Обобщения результатов Ф.~Трикоми для уравнения
+$$y^{2m+1}u_{xx} + u_{yy} = 0$$
+принадлежат С.~Геллерстедту \cite{gellerstedt}.
+
+С.~А.~Чаплыгин показал \cite{chaplygin}, что построение теории газовых струй тесно
+связано с изучением уравнения
+$$k(y)u_{xx} + u_{yy} = 0,$$
+которое в настоящее время носит его имя. Коэффициент $k$ является
+известной функцией переменного $y$, которая предполагается положительной
+при $y > 0$ и отрицательной при $y < 0$. Случай $k(y) > 0$ соответствует
+дозвуковому течению, а случай $k(y) < 0$ – сверхзвуковому течению газа.
+При изучении околозвукового течения газа приходится иметь дело с
+уравнением Чаплыгина в смешанных областях.
+
+Началом нового этапа в развитии теории уравнений смешанного типа
+явились работы Ф.~.И.~Франкля \cite{frankl-laval, frankl-eq}, в которых было показано, что задача
+истечения сверхзвуковой струи из сосуда с плоскими стенками сводится к
+задаче Трикоми для уравнения Чаплыгина. Также Ф.~И.~Франкль обнаружил важные приложения задачи Трикоми-Неймана в трансзвуковой
+газодинамике, а также в теории сопел Лаваля. М.~А.~Лаврентьев предложил \cite{lavrentiev-bitsadze} более
+простую модель уравнений смешанного типа
+$$u_{xx} + sign(y) u_{yy} = 0$$
+впоследствии названное уравнением Лаврентьева-Бицадзе. А.~В.~Бицадзе
+осуществил подробное исследование этого уравнения.
+
+И.~Н.~ Векуа указал \cite{vekua} на важность изучения задачи Дирихле для уравнений
+смешанного типа в связи с задачами теории бесконечно малых изгибаний
+поверхностей и безмоментной теории оболочек с кривизной переменного
+знака. Возникла проблема нахождения областей, для которых задача Дирихле
+окажется корректно поставленной, что явилось объектом дискуссии многих
+авторов.
+
+Работы Р.~Пэли и Н.~Винера \cite{paley-wiener}, Б.~Я.~ Левина \cite{levin} повысили интерес в исследовании 
+систем экспонент:
+$${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
+
+Таким образом, практическая важность уравнений смешанного типа обуславливает 
+актуальность изучения систем функций, с помощью которых решения выписываются в виде рядов.
+
+\section{Основные понятия}
+\section{Постановка задачи}
+
+
+\chapter*{Результаты работы}
+\addcontentsline{toc}{chapter}{Результаты работы}
+
+\section{Система синусов в пространствах $L_p, p > 1$}
+
+\section{Система синусов с действительным параметром $\beta$}
+
+\section{Система синусов с коплексным параметром $\beta$}
+
+Пусть \begin{equation}\sinCNull \tag{1} \label{eq:1}\end{equation}
+	
+	Для системы синусов известен следующий результат [4]:
+	
+	\medskip
+	\textbf{Теорема.} \itshape Пусть $p \in (1, +\infty)$; тогда система синусов 
+	$\sin(n - \frac{\beta}{2})\theta, n = 1, 2, \ldots$, 
+	образует базис в $L_p(0, \pi)$ тогда и только тогда, 
+	когда $\beta \in (-1/p, 2 - 1/p)$
+	\normalfont
+
+	В работе \cite{moi:gul} для системы 
+	$$\sincoeffs$$ 
+	был получен следующий результат:
+	
+	\begin{theorem}
+		Пусть $f(x)$ интегрируема по Лебегу на $[0, \pi]$, выполнено условие
+		\eqref{eq:1} и $\beta \in (0, 1)$, тода $f(x)$ почти всюду равняется нулю. 
+		Если же  $\beta in (-1, 0)$, то существует функция $f_0(x)$, причем
+		единственная, удовлетворяющая \eqref{eq:1} и равная $$\mainFunc.$$
+	\end{theorem}
+	
+	Также из работы  \cite{dev:dis} известно:
+	\begin{theorem}
+		Пусть $p \in (1, \infty)$ , тогда система синусов $\sin(n - \beta / 2)\theta, \\
+		n = 1, 2, \dots$ образует в пространстве $L_p[0, \pi]$ базис тогда и только тогда, 
+		когда $\Real\beta \in (-1/p, 2 - 1/p)$.
+	\end{theorem}
+	
+	
+	Рассмотрим систему синусов $$\sincoeffs, \beta\in\mathbb{C}$$
+	Тогда верно следующее:
+	\begin{theorem}
+		Пусть $f(x)$ интегрируема по Лебегу на $[0, \pi]$, выполнено условие
+		\eqref{eq:1} и \thinspace $\Real\beta \in (0, 1)$, 
+		тода $f(x)$ почти всюду равняется нулю. Если же \thinspace  
+		$\Real\beta \in (-1, 0)$, то существует функция $f_0(x) \not\equiv 0$, 
+		причем единственная, удовлетворяющая \eqref{eq:1} и равная $$\mainFunc.$$
+	\end{theorem}
+	
+	
+	\begin{proof}
+		Пусть $f(x) \in L(0, \pi)$ и $$\sinCNull$$
+		
+		Воспользуемся равенством:
+		$$
+			\frac{\msin{x}}{n - \frac{\beta}{2}} = \int\limits_o^\pi\mcos{t}dt
+		$$
+		
+		Имеем:
+		
+		$$
+			 0 = \int\limits_0^\pi f(x)\msin{x}dx = \int\limits_0^\pi f(x) \int\limits_0^x\mcos{t}dtdx(\mCoeff)
+		$$
+		
+		Меняем порядки интегрирования, используя теорему Фубини:
+	
+		$$
+			\int\limits_0^\pi\mcos{t}F(t)dt = 0, n = 1, 2, \dots,
+		$$
+		где
+		$$
+			F(t) = \int\limits_t^\pi f(x) dx
+		$$
+		
+		Заметим, что $F(x)$ является непрерывной функцией на $[0, \pi]$ в силу абсолютной непрерывности 
+		интеграла Лебега \cite{kolm}.
+		
+		В работе \cite{moi:dan} было доказано, что система косинусов
+		$$
+			\mcos{x}, n = 0, 1, 2, \dots
+		$$
+		
+		образует базис в $L_p(0, \pi)$ при $p > 1$, причем биортогональная система имеет следующий вид
+		$$
+			h^c_k(x) = \frac{2C^k_\beta}{\pi(2\cos\frac{x}{2})^\beta}
+			\Real\Bigl[F(-k; 1; \beta - k; -e^{ix}) - \frac{1}{2}\Bigr],
+		$$
+		
+		гдe $F(a; b; c; z) - $ гипергеометрическая функция \cite{bateman}, следовательно $F(t)$ можео представить
+		в виде ряда, сходящегося в $L_p(0, \pi)$
+		$$
+			F(t) = \sum\limits^\infty_{k = 0}B_k h^c_k(t), 
+		$$
+		
+		где 
+		$$
+			B_k = \int\limits_0^\pi F(t) \mcos{t}dt,
+		$$
+		
+		т.к. $B_k = 0, k \neq 0$, то отсюда получаем 
+		$$
+			F(t) = B_0 h^c_0(t)
+		$$
+		
+		где 
+		$$
+			h^c_0 = \frac{\Gamma^2(1 - \frac{\beta}{2})}{2\pi \Gamma(1- \beta)(2\cos\frac{t}{2})^\beta}.
+		$$
+		
+		Если $\Real\beta > 0$, то $h_0(t)$ имеет особенность в точке $t = \pi$, а функция $F(t)$ непрерывна на $(0, \pi)$,
+		поэтому $B_0 = 0$ и $F(t) = 0$ на $[0, \pi]$.
+		
+		Если $F(t) = 0$, то 
+		$$
+			\int\limits_t^\pi f(x)dx = 0, t \in [0, \pi],
+		$$
+		
+		отсюда следует, что $f(x)$ почти всюду равняется нулю на $[0, \pi]$.
+		
+		Рассмотрим случай $\Real\beta < 0$. Из \cite{moi:gul} известно, что:
+		\begin{lemma}
+			Если $\beta < 0, \beta\in\mathbb{R}$, то существует $f(x)$ интегрируемая, равная $h'_0(x)$ и 
+			$$
+				\sinCNull, \dots,
+			$$
+			
+			гдe $h'_0(x) = const \times (-\beta\cos\frac{x}{2})\sin\frac{x}{2}$.
+		\end{lemma}
+		
+		Так как функция $h'_0(x)$ является непрерывной, мы можем аналитически продолжить ее на область 
+		$\Real\beta < 0$. Покажем, что выполняется условие \eqref{eq:1}:
+		
+		 Рассмотрим следующий интеграл:
+		$$
+			\int\limits_0^\pi\cos(\frac{x}{2})^{-\beta - 1}\sin(\frac{x}{2})\sin(n - \frac{\beta}{2})xdx = 
+		$$
+		
+		\begin{equation}
+			2\int\limits_0^\frac{\pi}{2}\cos(t)^{-\beta - 1}\sin(t)\sin(2n - \beta)tdt 
+			= \int\limits_0^\frac{\pi}{2}cos(t)^{-\beta-1}\bigl(\cos(at) - \cos(bt)\bigr)dt,	\tag{2} \label{eq:2}
+		\end{equation}
+		где $a =1 + \beta - 2n, b = 1 - \beta + 2n.$
+		
+		
+		
+		\bigskip
+		
+		Воспользуемся формулой из \cite{bateman}:
+		$$
+			\int\limits_0^\frac{\pi}{2}(\cos(t))^\alpha \cos(\gamma t)dt = \frac{\pi}{2^{\alpha + 1}}
+			\frac{\Gamma(1 + \alpha)}{\Gamma(1 + \frac{\alpha + \gamma}{2})\Gamma(1 + \frac{\alpha - \gamma}{2})},
+			\enspace\Real\alpha > -1
+		$$
+		
+		Таким образом, из \eqref{eq:2} получаем:
+		$$
+			\int\limits_0^\pi\cos(\frac{x}{2})^{-\beta - 1}\sin(\frac{x}{2})\sin(n - \frac{\beta}{2})xdx = 
+		$$
+		
+		$$
+			\frac{\pi\Gamma(-\beta)}{2^{-\beta}}\Bigl[\frac{1}{\Gamma(1 - n)\Gamma(-\beta + n)} - 
+			\frac{1}{\Gamma(1 -\beta + n)\Gamma(- n)}\Bigr]
+		$$
+		
+		Единственность $f(x)$ следует из единственности биортогональной системы \cite{moi:dan}.
+		
+		Таким образом, теорема доказана.
+		
+	\end{proof}
+
+
+
+
+	
+\chapter*{Заключение}
+\addcontentsline{toc}{chapter}{Заключение}
+	
+\begin{thebibliography}{30}
+	\addcontentsline{toc}{chapter}{Литература}
+	
+	\bibitem{gellerstedt}
+	{\it Gellerstedt S.} Sur une equation lineaire aux derivees partielles de type mixte. — 
+	Ark Mat Astron Fys A. — 1937 —25(29), 1–23. 
+
+	\bibitem{kadec}
+	{\it Kadec M.I.} The exact value of the PaleyWiener constant, 
+	Sov. Math. Dokl. 5, 1964, 559561
+
+	\bibitem{paley-wiener}
+	{\it Paley R.E.A.C., Wiener N.} Fourier transforms in the complex domain. 
+	New York: American Mathematical Society. — 1934. — Vol. 19. — P. x+ 184.
+	
+	\bibitem{zigmund}
+	{\it Zygmund, A.} Trigonometric Series. 
+		Warszawa: Z Subwencji Funduszu Kultury Narodowej. — 1935. — 331 p.
+	
+	\bibitem{bari}
+	{\it Бари Н. К.} Тригонометрические ряды. —
+	М.: Физматлит, 1961. — 936 с.
+	
+	\bibitem{bitsadze}
+	{\it Бицадзе А. В. } О некоторых задачах для уравнений смешааного типа. —
+	Докл. АН СССР. 1950. Т. 70, № 4. С. 561–564.
+	
+	\bibitem{vekua}
+	{\it Векуа И.Н.} Некоторые общие методы построения различных вариантов теории оболочек. — 
+	Москва: Изд-во «Наука». — 1982. — 288 С.
+	
+	\bibitem{devdariani}
+	{\it Девдариани Г. Г.} Базисность некоторых специальных систем собственных функций несамосоиряжённых дифференциальных операторов. —
+	Автореф. дисс. . канд. физ.-мат. наук. Москва: МГУ, 1986.
+	
+	\bibitem{lavrentiev-bitsadze}
+	{\it Лаврентьев М.А., Бицадзе А.В.} К проблеме уравнений смешанного типа — 
+	Докл. АН СССР. — 1950. — Т. 79. — №. 3. — С. 373–376.
+
+	\bibitem{levin}
+	{\it Левин Б.Я.} Распределение корней целых функций. — 1956. — 632 С.
+	
+	\bibitem{moiseev-dan}
+	{\it Моисеев Е. И.} О базисности систем косинусов и синусов. —
+	Докл. АН СССР. 1984. Т. 275, № 4. С. 794–798.
+	
+	\bibitem{moiseev-sedleckiy}
+	{\it Моисеев Е.И., Прудников А.П., Седлецкий А.М.} Базисность и полнота некоторых тригонометрических систем элементарных функций. —
+	ВЦ им. А.А. Дородницына РАН. Москва. — 2004. — 146 C.
+	
+	\bibitem{trikomi}
+	{\it Трикоми Ф.} О линейных уравнениях смешанного типа (пер. с итал.) —
+	М.–Л.: Изд-во «Гостехиздат». — 1947. — 192 С.
+	
+	\bibitem{frankl-laval}
+	{\it Франкль Ф. И.} К теории сопел Лаваля —
+	Изв. АН СССР. Сер.: Математика, 1945, Т. 9, № 5, С. 387-422.
+	
+	\bibitem{frankl-eq}
+	{\it Франкль Ф. И.} К теории уравнения $yZ_{xx} + Z_{yy} = 0$ —
+	Изв. АН СССР, Сер.: Математика, 1946, Т. 10, № 2, С. 135-166.
+	
+	\bibitem{chaplygin}
+	{\it Чаплыгин С. А.}  О газовых струях. — М., 1902. — 121 с.
+	
+\end{thebibliography}
+\end{document} 
