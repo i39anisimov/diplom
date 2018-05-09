@@ -16,6 +16,7 @@
 
 \newtheorem{theorem}{Теорема}
 \newtheorem{lemma}{Лемма}
+\newtheorem{definition}{Определение}
 
 \begin{document}
 \begin{titlepage}
@@ -66,6 +67,7 @@
 \newcommand\mCoeff{n - \frac{\beta}{2}}
 \newcommand\Real{\operatorname{Re}}
 \newcommand\Imag{\operatorname{Im}}
+\newcommand\pv[1]{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny п.в.}}}{#1}}}
 %-------------------------------
 
 
@@ -93,8 +95,7 @@
 Научный интерес к изучению систем \eqref{eq:I} и \eqref{eq:II} не ограничивается лишь теоретическими вопросами. 
 Рассматриваемые системы имеют важное приложение в краевых задачах для уравнения смешанного типа.
 В 20-х годах XX века Ф.~Трикоми \cite{trikomi} положил начало исследования данных уравнений. 
-Впервые задача нахождения решения уравнения смешанного типа в
-смешанной области была поставлена и исследована для уравнения
+Впервые задача нахождения решения уравнения смешанного типа была поставлена и исследована для уравнения
 $$yu_{xx} + u_{yy} = 0,$$
 которое сейчас называют уравнением Трикоми.
 
@@ -138,6 +139,29 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 актуальность изучения систем функций, с помощью которых решения выписываются в виде рядов.
 
 \section{Основные понятия}
+
+\begin{definition}
+	\textit{Банаховым} пространством называется полное нормированное пространство	
+	над полем вещественных или комплексных чисел.
+\end{definition}
+
+\begin{definition}
+	\textit{Пространства $L_p(\chi, \mu)$} - это совокупность классов эквивалентных
+	между собой функций, для которых $\int|f(x)|^pd\mu < \infty$, где $1 \leq p < \infty$. \\
+	Пространство $L_p(\chi, \mu)$ является банаховым пространством относительно нормы 
+	$$\|f\| = \left(\int|f(x)|^pd\mu\right)^{1/p}$$
+\end{definition}
+
+\begin{definition}
+	Систему функций $\{\phi_k\}_{k = 1}^{\infty}$ будем называть полной в пространстве $L_1(0, \pi)$, если
+	$\forall\thickspace\psi(x)\in L_1(0, \pi)$, т. ч. $\int\limits_0^\pi\phi(x)\psi(x)dx = 0$ следует, что $\psi(x) \pv{=} 0.$
+\end{definition}
+
+
+
+
+	
+	
 \section{Постановка задачи}
 
 
@@ -216,9 +240,9 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 		$$
 		
 		Заметим, что $F(x)$ является непрерывной функцией на $[0, \pi]$ в силу абсолютной непрерывности 
-		интеграла Лебега \cite{kolm}.
+		интеграла Лебега \cite{kolmogorov}.
 		
-		В работе \cite{moi:dan} было доказано, что система косинусов
+		В работе \cite{moiseev-dan} было доказано, что система косинусов
 		$$
 			\mcos{x}, n = 0, 1, 2, \dots
 		$$
@@ -305,7 +329,7 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 			\frac{1}{\Gamma(1 -\beta + n)\Gamma(- n)}\Bigr]
 		$$
 		
-		Единственность $f(x)$ следует из единственности биортогональной системы \cite{moi:dan}.
+		Единственность $f(x)$ следует из единственности биортогональной системы \cite{moiseev-dan}.
 		
 		Таким образом, теорема доказана.
 		
@@ -320,6 +344,10 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 	
 \begin{thebibliography}{30}
 	\addcontentsline{toc}{chapter}{Литература}
+
+	\bibitem{bateman}
+	{\it Bateman H., Erd{\'e}lyi A.} Higher transcendental functions — 
+	McGraw-Hill — 1953.
 	
 	\bibitem{gellerstedt}
 	{\it Gellerstedt S.} Sur une equation lineaire aux derivees partielles de type mixte. — 
@@ -352,6 +380,10 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 	\bibitem{devdariani}
 	{\it Девдариани Г. Г.} Базисность некоторых специальных систем собственных функций несамосоиряжённых дифференциальных операторов. —
 	Автореф. дисс. . канд. физ.-мат. наук. Москва: МГУ, 1986.
+	
+	\bibitem{kolmogorov}
+	{\it Колмогоров А.Н., Фомин С.В.} Элементы теории функций и функционального анализа. —
+	Наука, 1989.
 	
 	\bibitem{lavrentiev-bitsadze}
 	{\it Лаврентьев М.А., Бицадзе А.В.} К проблеме уравнений смешанного типа — 
