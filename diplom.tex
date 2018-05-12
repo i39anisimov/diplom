@@ -7,6 +7,7 @@
 \usepackage{indentfirst}
 \usepackage{cite}
 \usepackage{psfrag}
+\usepackage[inline]{enumitem}
 
 \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}    %
 
@@ -61,13 +62,16 @@
 	\enspace n = 1, 2, \dots}
 \newcommand\sinCNull{\int\limits_0^{\pi}f(x)\sin(n - \frac{\beta}{2})xdx = 0,
 	\enspace n = 1, 2, \dots}
-\newcommand\mainFunc{f_0(x) = \cos(\frac{x}{2})^{-\beta-1}\sin(\frac{x}{2})}
+\newcommand\mainFunc{f_0(x) = (\cos\frac{x}{2})^{-\beta-1}\sin\frac{x}{2}}
 \newcommand\msin[1]{\sin(n - \frac{\beta}{2})#1}
+\newcommand\msindots[1]{\sin(n - \frac{\beta}{2})#1, n = 1, 2, \ldots}
 \newcommand\mcos[1]{\cos(n - \frac{\beta}{2})#1}
 \newcommand\mCoeff{n - \frac{\beta}{2}}
 \newcommand\Real{\operatorname{Re}}
 \newcommand\Imag{\operatorname{Im}}
 \newcommand\pv[1]{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny п.в.}}}{#1}}}
+\newcommand\phisys[2]{\{\phi_#1(#2)\}}
+\newcommand\bsin[1]{h_n^s(#1)=\frac{2}{\pi}\sum\limits_{k = 0}^{n - 1}C_{\beta}^k\sin(n - k)#1\bigl(2\cos(\frac{\theta}{2} )\bigr)^{-\beta}}
 %-------------------------------
 
 
@@ -127,16 +131,16 @@ $$u_{xx} + sign(y) u_{yy} = 0$$
 И.~Н.~ Векуа указал \cite{vekua} на важность изучения задачи Дирихле для уравнений
 смешанного типа в связи с задачами теории бесконечно малых изгибаний
 поверхностей и безмоментной теории оболочек с кривизной переменного
-знака. Возникла проблема нахождения областей, для которых задача Дирихле
-окажется корректно поставленной, что явилось объектом дискуссии многих
-авторов.
+знака. 
 
 Работы Р.~Пэли и Н.~Винера \cite{paley-wiener}, Б.~Я.~ Левина \cite{levin} повысили интерес в исследовании 
 систем экспонент:
 $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 
 Таким образом, практическая важность уравнений смешанного типа обуславливает 
-актуальность изучения систем функций, с помощью которых решения выписываются в виде рядов.
+актуальность изучения систем функций. Е.~И.~Моисеев в работах \cite{moiseev-1990, moiseev-1996} успешно
+использовал базисность систем косинусов и синусов при построении явного решения в виде
+биортогональных рядов по этим системам. 
 
 \section{Основные понятия}
 
@@ -153,41 +157,81 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 \end{definition}
 
 \begin{definition}
-	Систему функций $\{\phi_k\}_{k = 1}^{\infty}$ будем называть полной в пространстве $L_1(0, \pi)$, если
-	$\forall\thickspace\psi(x)\in L_1(0, \pi)$, т. ч. $\int\limits_0^\pi\phi(x)\psi(x)dx = 0$ следует, что $\psi(x) \pv{=} 0.$
+	Систему функций $\{\phi_k\}_{k = 1}^{\infty}$ будем называть \textbf{полной} в пространстве $L_1(0, \pi)$, если
+	$\forall\thickspace\psi(x)\in L_1(0, \pi)$, т. ч. $\int\limits_0^\pi\phi_k(x)\psi(x)dx = 0, \forall k$ следует, что $\psi(x) \pv{=} 0.$
 \end{definition}
 
+\begin{definition} 
+	Система функций $\{\varphi_n\}_{n = 1}^{\infty}$ называется \textbf{базисом} пространства $E$, 
+	если любой элемент $f \in E$ можно разложить, причем единственным образом, в ряд по системе
+	$\{\varphi_n\}_{n = 1}^{\infty}$, сходящийся к $f$ по норме этого пространства. \\
+	Иными словами, $\forall f \in E \	\exists !$ числовая последовательность $\{c_n\}_{n = 1}^{\infty}$ такая, что
+	$$\lim\limits_{n\rightarrow\infty}\|f-\sum\limits_{k = 1}^{n}c_{k}f_{k}\| = 0$$
+\end{definition}
 
+\begin{definition}
+	Система $\{\psi_n(\theta)\}_{n = 1}^{\infty}$ называется \textbf{биортогонально сопряженной} 
+	(или просто \textit{биортогональной}) к системе $\{\varphi_n(\theta)\}_{n = 1}^{\infty}$ на $[a, b]$, 
+	если $$\int\limits_a^b\varphi_n(\theta)\psi_k(\theta)d\theta = \delta_{n,k}.$$
+\end{definition}
 
-
-	
-	
+\newpage	
 \section{Постановка задачи}
+Пусть $$\phisys{n}{x} = \msin{x}, n = 1, 2, \dots$$
+Биортогональная система имеет следующий вид:
+$$\bsin{x}$$
+
 
 
 \chapter*{Результаты работы}
 \addcontentsline{toc}{chapter}{Результаты работы}
+\section{Система синусов в пространствах $L_p(0, \pi), p > 1$}
 
-\section{Система синусов в пространствах $L_p, p > 1$}
+Пусть $\{\lambda_k\}_{-\infty}^{\infty}$ - последовательность действительных чисел, 
+$d = \underset{k}{\sup_k|\lambda_k - k| }$.
+Хорошо известен результат М.И. Кадеца \cite{kadec}:
 
-\section{Система синусов с действительным параметром $\beta$}
+\begin{theorem}
+Если $ d < \frac{1}{4}$ система экспонент $\{e^{i\lambda_k t}\}_{-\infty}^{\infty}$ 
+образует базис Рисса в $L_2(-\pi, \pi)$. 
+\end{theorem}
 
-\section{Система синусов с коплексным параметром $\beta$}
+Отсюда следует, что при $d < \frac{1}{4}$ каждая из систем 
+$$
+	\{\sin\lambda_kt\}_1^{+\infty}, \\
+	1 \cup \{\cos\lambda_kt\}_1^{+\infty}
+$$
+образует базис в $L_2(-\pi, \pi)$.
+
+Дальнейшим развитием данной темы является работа \cite{moiseev-dan}.
+В ней Е. ~И. ~Моисеев  рассматривает последовательность $\{\lambda_k\}$ вида $\lambda_k = k + \beta$.
+В работе были найдены необходимое и достаточное условие на параметр $\beta$, 
+когда соответствующие системы синусов и косинусов образуют базисы в $L_p(0, \pi), 1 < p < +\infty$: 
+
+\begin{theorem}
+	Пусть $p \in (1, +\infty)$; тогда система синусов $\msindots{\theta}$, 
+	образует базис в $L_p(0, \pi)$ тогда и только тогда, 
+	когда $\beta \in (-1/p, 2 - 1/p)$, причем разложение функции $\psi(\theta) \in L_p(0, \pi)$
+	в ряд имеет вид
+	$$
+		\psi(\theta) = \sum\limits_{n = 1}^{\infty}A_{n}\sin(n - \frac{\beta}{2})\theta,
+	$$
+	где $A_n = \int\limits_0^{\pi}\psi(\theta)h_n^s(\theta)d\theta.$
+\end{theorem}
+
+Обобщением результатов Е.~И.~Моисеева является работа Г.~Г.~Девдариани \cite{devdariani}.
+В ней автор рассматривал случай комплекснозначного параметра $\beta$ и получил следующий результат:
+\begin{theorem}
+	Пусть $p \in (1, +\infty)$; тогда система синусов $\msindots{\theta}$, 
+	образует базис в $L_p(0, \pi)$ тогда и только тогда, 
+	когда $\Real{\beta} \in (-1/p, 2 - 1/p)$.
+\end{theorem}
+
+\section{Система синусов в пространстве $L_1(0, \pi)$}
 
 Пусть \begin{equation}\sinCNull \tag{1} \label{eq:1}\end{equation}
-	
-	Для системы синусов известен следующий результат [4]:
-	
-	\medskip
-	\textbf{Теорема.} \itshape Пусть $p \in (1, +\infty)$; тогда система синусов 
-	$\sin(n - \frac{\beta}{2})\theta, n = 1, 2, \ldots$, 
-	образует базис в $L_p(0, \pi)$ тогда и только тогда, 
-	когда $\beta \in (-1/p, 2 - 1/p)$
-	\normalfont
 
-	В работе \cite{moi:gul} для системы 
-	$$\sincoeffs$$ 
-	был получен следующий результат:
+	В работе \cite{moiseev-2018} для системы $$\sincoeffs$$ был получен следующий результат:
 	
 	\begin{theorem}
 		Пусть $f(x)$ интегрируема по Лебегу на $[0, \pi]$, выполнено условие
@@ -196,12 +240,8 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 		единственная, удовлетворяющая \eqref{eq:1} и равная $$\mainFunc.$$
 	\end{theorem}
 	
-	Также из работы  \cite{dev:dis} известно:
-	\begin{theorem}
-		Пусть $p \in (1, \infty)$ , тогда система синусов $\sin(n - \beta / 2)\theta, \\
-		n = 1, 2, \dots$ образует в пространстве $L_p[0, \pi]$ базис тогда и только тогда, 
-		когда $\Real\beta \in (-1/p, 2 - 1/p)$.
-	\end{theorem}
+	Основным результатом данной работы является обобщение результатов, полученных Е.~И.~Моисеевым 
+	и Д.~А.~Гуляевым в случае комплексного значения параметра $\beta$.
 	
 	
 	Рассмотрим систему синусов $$\sincoeffs, \beta\in\mathbb{C}$$
@@ -284,27 +324,49 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 		
 		отсюда следует, что $f(x)$ почти всюду равняется нулю на $[0, \pi]$.
 		
-		Рассмотрим случай $\Real\beta < 0$. Из \cite{moi:gul} известно, что:
-		\begin{lemma}
-			Если $\beta < 0, \beta\in\mathbb{R}$, то существует $f(x)$ интегрируемая, равная $h'_0(x)$ и 
-			$$
-				\sinCNull, \dots,
-			$$
-			
-			гдe $h'_0(x) = const \times (-\beta\cos\frac{x}{2})\sin\frac{x}{2}$.
-		\end{lemma}
+		Рассмотрим $\Real\beta < 0$. В этом случае $F(t) = B_0h^c_0(t)$. Известно \cite{moiseev-dan}, что
+		\begin{equation}
+			\int\limits_0^\pi h^c_0(t)\mcos{t}dt = 0, \tag{2} \label{eq:2}
+		\end{equation}
+		при $n = 1, 2, \ldots$ в силу условия биортогональности.
 		
-		Так как функция $h'_0(x)$ является непрерывной, мы можем аналитически продолжить ее на область 
-		$\Real\beta < 0$. Покажем, что выполняется условие \eqref{eq:1}:
+		Перепишем интегральное соотношение \eqref{eq:2} в следующем виде:
+		\begin{equation}
+			\int\limits_0^\pi h^c_0(t)\mcos{t}dt = 
+			\frac{\int\limits_0^\pi h^c_0(t)\frac{\partial\sin(n - \beta / 2)t}{\partial t}dt}{n - \frac{\beta}{2}}
+			\tag{3}\label{eq:3}
+		\end{equation}
+		Интегрируя соотношение \eqref{eq:3} по частям и учитывая, что $h^c_0(\pi) = 0$, получим
+		$$
+			\int\limits_0^\pi h^c_0(t)\mcos{t}dt = 
+			-\frac{\int\limits_0^\pi h^{'c}_0(t)\sin(n - \beta / 2)tdt}{n - \frac{\beta}{2}} = 0, n = 1,2, \ldots,
+		$$
+		т.е.
+		$$
+			\int\limits_0^\pi h^{'c}_0(t)\msin{t}dt = 0, n = 1, 2, \ldots.
+		$$
+		Из работы \cite{moiseev-2018} известно, что $h^{'c}_0(x) = \mainFunc$.
+		Из случая $\Real{\beta}$ и условия \eqref{eq:1} не следует, что $f(t)$ почти всюду равна нулю.
+		
+		Теорема доказана.
+		
+		\bigskip
+		Таким образом мы установили, что при $\Real{\beta} \in (0, 1)$ система синусов полна в $L_1(0, \pi)$, а при 
+		$\Real{\beta} \in (-1, 0)$ не является таковой. Мы показали, что существует функция $f_0(x)$, такая, что ее 
+		коэффициенты равны нулю при любом $n$, а сама функция не равна нули почти всюду.
+		
+		В дополенение, приведем непосредственный подсчет коэффициентов для функции $f_0(x)$
+		
+		Покажем, что выполняется условие \eqref{eq:1}:
 		
 		 Рассмотрим следующий интеграл:
 		$$
-			\int\limits_0^\pi\cos(\frac{x}{2})^{-\beta - 1}\sin(\frac{x}{2})\sin(n - \frac{\beta}{2})xdx = 
+			\int\limits_0^\pi\mainFunc\sin(n - \frac{\beta}{2})xdx = 
 		$$
 		
 		\begin{equation}
 			2\int\limits_0^\frac{\pi}{2}\cos(t)^{-\beta - 1}\sin(t)\sin(2n - \beta)tdt 
-			= \int\limits_0^\frac{\pi}{2}cos(t)^{-\beta-1}\bigl(\cos(at) - \cos(bt)\bigr)dt,	\tag{2} \label{eq:2}
+			= \int\limits_0^\frac{\pi}{2}cos(t)^{-\beta-1}\bigl(\cos(at) - \cos(bt)\bigr)dt,	\tag{4} \label{eq:4}
 		\end{equation}
 		где $a =1 + \beta - 2n, b = 1 - \beta + 2n.$
 		
@@ -319,9 +381,9 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 			\enspace\Real\alpha > -1
 		$$
 		
-		Таким образом, из \eqref{eq:2} получаем:
+		Таким образом, из \eqref{eq:4} получаем:
 		$$
-			\int\limits_0^\pi\cos(\frac{x}{2})^{-\beta - 1}\sin(\frac{x}{2})\sin(n - \frac{\beta}{2})xdx = 
+			\int\limits_0^\pi\mainFunc\sin(n - \frac{\beta}{2})xdx = 
 		$$
 		
 		$$
@@ -329,9 +391,24 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 			\frac{1}{\Gamma(1 -\beta + n)\Gamma(- n)}\Bigr]
 		$$
 		
-		Единственность $f(x)$ следует из единственности биортогональной системы \cite{moiseev-dan}.
+		Воспользуемся свойством гамма-функции: 
 		
-		Таким образом, теорема доказана.
+		Пусть $z$ - целое неотрицательное число, тогда
+		$$
+			\Gamma(1 - z)\Gamma(z) = \frac{\pi}{\sin\pi z}
+		$$
+		$$
+			\Gamma(1 - z) = \frac{\Gamma(z)\pi}{\sin\pi z} 
+		$$
+		
+		\bigskip
+		Так как $n \geq 1$ имеем, что $\frac{1}{\Gamma(1 - n)\Gamma(-\beta + n)} = 0$ и
+		$\frac{1}{\Gamma(1 -\beta + n)\Gamma(- n)} = 0$. 
+		
+		Таким образом 
+		$$
+			\int\limits_0^\pi\mainFunc\sin(n - \frac{\beta}{2})xdx = 0, n = 1, 2, \ldots 
+		$$
 		
 	\end{proof}
 
@@ -352,10 +429,11 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 	\bibitem{gellerstedt}
 	{\it Gellerstedt S.} Sur une equation lineaire aux derivees partielles de type mixte. — 
 	Ark Mat Astron Fys A. — 1937 —25(29), 1–23. 
-
-	\bibitem{kadec}
-	{\it Kadec M.I.} The exact value of the PaleyWiener constant, 
-	Sov. Math. Dokl. 5, 1964, 559561
+	
+	\bibitem{moiseev-2018}
+	\it{Moiseev E. I., Gulyaev D.A.}
+	The completeness of the sines and cosines in the space of integrable functions. —
+	Integral Transforms and Special Functions. — 2018 — 29(1) — 16-20
 
 	\bibitem{paley-wiener}
 	{\it Paley R.E.A.C., Wiener N.} Fourier transforms in the complex domain. 
@@ -381,6 +459,10 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 	{\it Девдариани Г. Г.} Базисность некоторых специальных систем собственных функций несамосоиряжённых дифференциальных операторов. —
 	Автореф. дисс. . канд. физ.-мат. наук. Москва: МГУ, 1986.
 	
+	\bibitem{kadec}
+	{\it Кадец М.И.} Точное значение постоянной Палея-Винера, —
+	ДАН СССР 155, No. 6 (1964), 1253-1254
+	
 	\bibitem{kolmogorov}
 	{\it Колмогоров А.Н., Фомин С.В.} Элементы теории функций и функционального анализа. —
 	Наука, 1989.
@@ -395,6 +477,14 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 	\bibitem{moiseev-dan}
 	{\it Моисеев Е. И.} О базисности систем косинусов и синусов. —
 	Докл. АН СССР. 1984. Т. 275, № 4. С. 794–798.
+	
+	\bibitem{moiseev-1990}
+	\it{ Моисеев Е.И.} Решение задачи Трикоми в специальных областях. —
+	Дифференц. уравнения. — 1990. — Т. 26, №1. — С. 93 - 103.
+
+	\bibitem{moiseev-1996}
+	\it{ Моисеев Е.И.} О дифференциальных свойствах разложений по системе синусов и косинусов. —
+	Дифференц. уравнения. — 1996. — Т. 32, №1. — С. 117 - 126.
 	
 	\bibitem{moiseev-sedleckiy}
 	{\it Моисеев Е.И., Прудников А.П., Седлецкий А.М.} Базисность и полнота некоторых тригонометрических систем элементарных функций. —
