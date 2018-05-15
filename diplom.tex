@@ -11,9 +11,9 @@
 
 \IfFileExists{pscyr.sty}{\usepackage{pscyr}}{}    %
 
-\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=1cm]{geometry}
+\usepackage[top=2cm,bottom=2cm,left=3cm,right=1cm]{geometry}
 
-\linespread{1.3}
+\linespread{1.5}
 
 \newtheorem{theorem}{Теорема}
 \newtheorem{lemma}{Лемма}
@@ -40,7 +40,7 @@
 МАГИСТЕРСКАЯ ДИССЕРТАЦИЯ
 
 \end{center}
- \vspace{2cm}
+\vspace{1.5cm}
 \begin{flushright}
 
 {\bf Научный руководитель:}\\
@@ -49,7 +49,7 @@
 
 \end{flushright}
 
- \vspace{2cm}
+ \vspace{1.5cm}
 
 \centerline {Москва, 2018}
 
@@ -58,20 +58,21 @@
 \tableofcontents
 
 %-------------------------------
-\newcommand\sincoeffs{\int\limits_0^{\pi}\sin(n - \frac{\beta}{2})xdx,
+\newcommand\sincoeffs{\int\limits_0^{\pi}\sin\left(n - \frac{\beta}{2}\right)xdx,
 	\enspace n = 1, 2, \dots}
-\newcommand\sinCNull{\int\limits_0^{\pi}f(x)\sin(n - \frac{\beta}{2})xdx = 0,
+\newcommand\sinCNull{\int\limits_0^{\pi}f(x)\sin\left(n - \frac{\beta}{2}\right)xdx = 0,
 	\enspace n = 1, 2, \dots}
-\newcommand\mainFunc{f_0(x) = (\cos\frac{x}{2})^{-\beta-1}\sin\frac{x}{2}}
-\newcommand\msin[1]{\sin(n - \frac{\beta}{2})#1}
-\newcommand\msindots[1]{\sin(n - \frac{\beta}{2})#1, n = 1, 2, \ldots}
-\newcommand\mcos[1]{\cos(n - \frac{\beta}{2})#1}
+\newcommand\mainFunc[1]{\left(\cos\frac{#1}{2}\right)^{-\beta-1}\sin\frac{#1}{2}}
+\newcommand\msin[1]{\sin\left(n - \frac{\beta}{2}\right)#1}
+\newcommand\msindots[1]{\sin\left(n - \frac{\beta}{2}\right)#1, n = 1, 2, \ldots}
+\newcommand\mcos[1]{\cos\left(n - \frac{\beta}{2}\right)#1}
 \newcommand\mCoeff{n - \frac{\beta}{2}}
 \newcommand\Real{\operatorname{Re}}
 \newcommand\Imag{\operatorname{Im}}
 \newcommand\pv[1]{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny п.в.}}}{#1}}}
 \newcommand\phisys[2]{\{\phi_#1(#2)\}}
-\newcommand\bsin[1]{h_n^s(#1)=\frac{2}{\pi}\sum\limits_{k = 0}^{n - 1}C_{\beta}^k\sin(n - k)#1\bigl(2\cos(\frac{\theta}{2} )\bigr)^{-\beta}}
+\newcommand\bsin[1]{h_n^s(#1)=\frac{2}{\pi}\sum\limits_{k = 0}^{n - 1}C_{\beta}^k\sin(n - k)#1\Bigg(2\cos\left(\frac{\theta}{2}\right)\Bigg)^{-\beta}}
+\newcommand\bcos[1]{h^c_k(#1) = \frac{2C^k_\beta}{\pi(2\cos\frac{#1}{2})^\beta}\Real\Bigg[F(-k; 1; \beta - k; -e^{i#1}) - \frac{1}{2}\Bigg]}
 %-------------------------------
 
 
@@ -93,11 +94,13 @@
 
 Системы \eqref{eq:I}, \eqref{eq:II} в случае $\beta = 0$ хорошо изучены. Они подробно освещены в монографиях
 А.~Зигмунда \cite{zigmund} и Н.~К.~Бари \cite{bari}. Случаю, когда $\beta \neq 0$, посвящены работы 
-Н.~Винера, Р.~Пэли \cite{paley-wiener}, М.~И.~Кадеца \cite{kadec}, Е.~И.~Моисеева \cite{moiseev-dan}, 
+Н.~Винера, Р.~Пэли \cite{paley-wiener}, М.~И.~Кадеца \cite{kadec}, Е.~И.~Моисеева \cite{moiseev-dan},
 Г.~Г.~Девдариани \cite{devdariani}, А.~М.~Седлецкого \cite{moiseev-sedleckiy}.
 
-Научный интерес к изучению систем \eqref{eq:I} и \eqref{eq:II} не ограничивается лишь теоретическими вопросами. 
-Рассматриваемые системы имеют важное приложение в краевых задачах для уравнения смешанного типа.
+Научный интерес к изучению систем \eqref{eq:I} и \eqref{eq:II} не ограничивается лишь 
+теоретическими вопросами. Рассматриваемые системы имеют важное 
+приложение в краевых задачах для уравнения смешанного типа.
+
 В 20-х годах XX века Ф.~Трикоми \cite{trikomi} положил начало исследования данных уравнений. 
 Впервые задача нахождения решения уравнения смешанного типа была поставлена и исследована для уравнения
 $$yu_{xx} + u_{yy} = 0,$$
@@ -125,11 +128,11 @@ $$k(y)u_{xx} + u_{yy} = 0,$$
 газодинамике, а также в теории сопел Лаваля. М.~А.~Лаврентьев предложил \cite{lavrentiev-bitsadze} более
 простую модель уравнений смешанного типа
 $$u_{xx} + sign(y) u_{yy} = 0$$
-впоследствии названное уравнением Лаврентьева-Бицадзе. А.~В.~Бицадзе
+впоследствии названное уравнением Лаврентьева-Бицадзе. А.~В.~Бицадзе 
 осуществил подробное исследование этого уравнения.
 
 И.~Н.~ Векуа указал \cite{vekua} на важность изучения задачи Дирихле для уравнений
-смешанного типа в связи с задачами теории бесконечно малых изгибаний
+смешанного типа в связи с задачами теории бесконечно малых изгибаний 
 поверхностей и безмоментной теории оболочек с кривизной переменного
 знака. 
 
@@ -150,7 +153,7 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 \end{definition}
 
 \begin{definition}
-	\textit{Пространства $L_p(\chi, \mu)$} - это совокупность классов эквивалентных
+	\textit{Пространства $L_p(\chi, \mu)$} ~--- это совокупность классов эквивалентных
 	между собой функций, для которых $\int|f(x)|^pd\mu < \infty$, где $1 \leq p < \infty$. \\
 	Пространство $L_p(\chi, \mu)$ является банаховым пространством относительно нормы 
 	$$\|f\| = \left(\int|f(x)|^pd\mu\right)^{1/p}$$
@@ -166,7 +169,7 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 	если любой элемент $f \in E$ можно разложить, причем единственным образом, в ряд по системе
 	$\{\varphi_n\}_{n = 1}^{\infty}$, сходящийся к $f$ по норме этого пространства. \\
 	Иными словами, $\forall f \in E \	\exists !$ числовая последовательность $\{c_n\}_{n = 1}^{\infty}$ такая, что
-	$$\lim\limits_{n\rightarrow\infty}\|f-\sum\limits_{k = 1}^{n}c_{k}f_{k}\| = 0$$
+	$$\lim\limits_{n\rightarrow\infty}\Big\|f-\sum\limits_{k = 1}^{n}c_{k}f_{k}\Big\| = 0$$
 \end{definition}
 
 \begin{definition}
@@ -175,20 +178,48 @@ $${A(t)e^{int}; B(t)e^{-ikt}}_{n \geqslant 0, k \geqslant 1}$$
 	если $$\int\limits_a^b\varphi_n(\theta)\psi_k(\theta)d\theta = \delta_{n,k}.$$
 \end{definition}
 
+\begin{definition}
+	Система функций $\phisys{n}{x}$ называется \textbf{B-системой}, если \\
+	$\exists\{\psi_n(x)\}$ ~--- биортогонально сопряженная к $\phisys{n}{x}.$
+\end{definition}
+
+
+\begin{definition}
+	B-система функций $\phisys{n}{x}$ называется \textbf{бесселевой}, если для для любой $f \in L_2$ сходится ряд из квадратов
+	коэффициентов ее биортогонального разложения по $\phisys{n}{x}$, т.~е. если из $f \in L_2$ следует, что \\
+	$\sum\limits^\infty_{n = 1}(f, g_n)^2 < +\infty$, где $\{g_n(x)\}$ ~--- сопряженная система.
+\end{definition}
+
+\begin{definition}
+	B-система функций $\phisys{n}{x}$ называется \textbf{гильбертовой}, если для для любой последовательности чисел
+	$c_n$, таких, что $\sum\limits^\infty_{n = 1}c_n^2 < + \infty$ найдется одна и только одна $f$, для которой эти $c_n$
+	являются коэффициентами ее биортогонального разложения по $\phisys{n}{x}$, т.~е.
+	$$c_n = (f, g_n); \thinspace n = 1, 2, \ldots.$$
+\end{definition}
+
+\begin{definition}
+	B-система функций $\phisys{n}{x}$ называется \textbf{системой Фишера~-~Рисса}, если она является бесселевой и гильбертовой 
+	одновременно.
+\end{definition}
+
 \newpage	
 \section{Постановка задачи}
-Пусть $$\phisys{n}{x} = \msin{x}, n = 1, 2, \dots$$
-Биортогональная система имеет следующий вид:
-$$\bsin{x}$$
-
+Пусть $$\phisys{n}{x} = \msin{x}, n = 1, 2, \dots,  \beta\in\mathbb{C}$$
+\begin{enumerate}
+	\item Изучить вопросы полноты и базисности $\phisys{n}{x}$ в пространствах $L_p(0, \pi),\\ p > 1$
+	\item В пространстве суммируемых функций $L_1(0, \pi)$ проверить является ли система $\phisys{n}{x}$ полной.
+	В случае если система не является полной привести пример элемента пространства, при котором это свойство не выполняется.
+\end{enumerate}
 
 
 \chapter*{Результаты работы}
 \addcontentsline{toc}{chapter}{Результаты работы}
+\begin{raggedright}
 \section{Система синусов в пространствах $L_p(0, \pi), p > 1$}
+\end{raggedright}
 
-Пусть $\{\lambda_k\}_{-\infty}^{\infty}$ - последовательность действительных чисел, 
-$d = \underset{k}{\sup_k|\lambda_k - k| }$.
+Пусть $\{\lambda_k\}_{-\infty}^{\infty}$ ~--- последовательность действительных чисел, 
+$d = \underset{k}{\sup}|\lambda_k - k| $.
 Хорошо известен результат М.И. Кадеца \cite{kadec}:
 
 \begin{theorem}
@@ -198,23 +229,23 @@ $d = \underset{k}{\sup_k|\lambda_k - k| }$.
 
 Отсюда следует, что при $d < \frac{1}{4}$ каждая из систем 
 $$
-	\{\sin\lambda_kt\}_1^{+\infty}, \\
-	1 \cup \{\cos\lambda_kt\}_1^{+\infty}
+	\{\sin\lambda_kt\}_{k = 1}^{+\infty}, \thinspace\\
+	1 \cup \{\cos\lambda_kt\}_{k = 1}^{+\infty}
 $$
 образует базис в $L_2(-\pi, \pi)$.
 
 Дальнейшим развитием данной темы является работа \cite{moiseev-dan}.
-В ней Е. ~И. ~Моисеев  рассматривает последовательность $\{\lambda_k\}$ вида $\lambda_k = k + \beta$.
+В ней Е.~И.~Моисеев  рассматривает последовательность $\{\lambda_k\}$ вида $\lambda_k = k + \beta$.
 В работе были найдены необходимое и достаточное условие на параметр $\beta$, 
 когда соответствующие системы синусов и косинусов образуют базисы в $L_p(0, \pi), 1 < p < +\infty$: 
 
 \begin{theorem}
-	Пусть $p \in (1, +\infty)$; тогда система синусов $\msindots{\theta}$, 
-	образует базис в $L_p(0, \pi)$ тогда и только тогда, 
-	когда $\beta \in (-1/p, 2 - 1/p)$, причем разложение функции $\psi(\theta) \in L_p(0, \pi)$
+	Пусть $p \in (1, +\infty)$; тогда система синусов $$\msindots{\theta}$$ 
+	образует базис в $L_p(0, \pi)$ тогда и только тогда, когда 
+	$\beta \in (-1/p, 2 - 1/p)$, причем разложение функции $\psi(\theta) \in L_p(0, \pi)$
 	в ряд имеет вид
 	$$
-		\psi(\theta) = \sum\limits_{n = 1}^{\infty}A_{n}\sin(n - \frac{\beta}{2})\theta,
+		\psi(\theta) = \sum\limits_{n = 1}^{\infty}A_{n}\msin{\theta},
 	$$
 	где $A_n = \int\limits_0^{\pi}\psi(\theta)h_n^s(\theta)d\theta.$
 \end{theorem}
@@ -227,6 +258,10 @@ $$
 	когда $\Real{\beta} \in (-1/p, 2 - 1/p)$.
 \end{theorem}
 
+Таким образом, для $p > 1$ найдены необходимые и достаточные условия для параметра $\beta$,
+чтобы система $\msin{x}$ являлась базисом. Результаты получены как в случае действительных значений $\beta$, 
+так и комплексных.
+
 \section{Система синусов в пространстве $L_1(0, \pi)$}
 
 Пусть \begin{equation}\sinCNull \tag{1} \label{eq:1}\end{equation}
@@ -235,9 +270,9 @@ $$
 	
 	\begin{theorem}
 		Пусть $f(x)$ интегрируема по Лебегу на $[0, \pi]$, выполнено условие
-		\eqref{eq:1} и $\beta \in (0, 1)$, тода $f(x)$ почти всюду равняется нулю. 
-		Если же  $\beta in (-1, 0)$, то существует функция $f_0(x)$, причем
-		единственная, удовлетворяющая \eqref{eq:1} и равная $$\mainFunc.$$
+		\eqref{eq:1} и $\beta\in(0, 1)$, тода $f(x)$ почти всюду равняется нулю. 
+		Если же  $\beta\in(-1, 0)$, то существует функция $f_0(x)$, причем
+		единственная, удовлетворяющая \eqref{eq:1} и равная $$f_0(x) = \mainFunc{x}.$$
 	\end{theorem}
 	
 	Основным результатом данной работы является обобщение результатов, полученных Е.~И.~Моисеевым 
@@ -251,7 +286,7 @@ $$
 		\eqref{eq:1} и \thinspace $\Real\beta \in (0, 1)$, 
 		тода $f(x)$ почти всюду равняется нулю. Если же \thinspace  
 		$\Real\beta \in (-1, 0)$, то существует функция $f_0(x) \not\equiv 0$, 
-		причем единственная, удовлетворяющая \eqref{eq:1} и равная $$\mainFunc.$$
+		причем единственная, удовлетворяющая \eqref{eq:1} и равная $$f_0(x) = \mainFunc{x}.$$
 	\end{theorem}
 	
 	
@@ -266,7 +301,7 @@ $$
 		Имеем:
 		
 		$$
-			 0 = \int\limits_0^\pi f(x)\msin{x}dx = \int\limits_0^\pi f(x) \int\limits_0^x\mcos{t}dtdx(\mCoeff)
+			 0 = \int\limits_0^\pi f(x)\msin{x}dx = \int\limits_0^\pi f(x) \int\limits_0^x\mcos{t}dtdx\left(\mCoeff\right)
 		$$
 		
 		Меняем порядки интегрирования, используя теорему Фубини:
@@ -289,11 +324,10 @@ $$
 		
 		образует базис в $L_p(0, \pi)$ при $p > 1$, причем биортогональная система имеет следующий вид
 		$$
-			h^c_k(x) = \frac{2C^k_\beta}{\pi(2\cos\frac{x}{2})^\beta}
-			\Real\Bigl[F(-k; 1; \beta - k; -e^{ix}) - \frac{1}{2}\Bigr],
+			\bcos{x}
 		$$
 		
-		гдe $F(a; b; c; z) - $ гипергеометрическая функция \cite{bateman}, следовательно $F(t)$ можео представить
+		гдe $F(a; b; c; z) ~--- $ гипергеометрическая функция \cite{bateman}, следовательно $F(t)$ можно представить
 		в виде ряда, сходящегося в $L_p(0, \pi)$
 		$$
 			F(t) = \sum\limits^\infty_{k = 0}B_k h^c_k(t), 
@@ -345,8 +379,9 @@ $$
 		$$
 			\int\limits_0^\pi h^{'c}_0(t)\msin{t}dt = 0, n = 1, 2, \ldots.
 		$$
-		Из работы \cite{moiseev-2018} известно, что $h^{'c}_0(x) = \mainFunc$.
-		Из случая $\Real{\beta}$ и условия \eqref{eq:1} не следует, что $f(t)$ почти всюду равна нулю.
+		Из работы \cite{moiseev-2018} известно, что $h^{'c}_0(x) = \mainFunc{x}$. 
+		Заметим, что функция $f_0(x)$ аналитически продолжается в область $\Real\beta \in (-1, 0)$. 
+		Таким образом, из случая $\Real{\beta} < 0$ и условия \eqref{eq:1} не следует, что $f(t)$ почти всюду равна нулю.
 		
 		Теорема доказана.
 		
@@ -355,13 +390,10 @@ $$
 		$\Real{\beta} \in (-1, 0)$ не является таковой. Мы показали, что существует функция $f_0(x)$, такая, что ее 
 		коэффициенты равны нулю при любом $n$, а сама функция не равна нули почти всюду.
 		
-		В дополенение, приведем непосредственный подсчет коэффициентов для функции $f_0(x)$
-		
-		Покажем, что выполняется условие \eqref{eq:1}:
-		
-		 Рассмотрим следующий интеграл:
+		В дополенение, приведем непосредственный подсчет коэффициентов для функции $f_0(x)$\\
+		Покажем, что выполняется условие \eqref{eq:1}. Рассмотрим следующий интеграл:
 		$$
-			\int\limits_0^\pi\mainFunc\sin(n - \frac{\beta}{2})xdx = 
+			\int\limits_0^\pi\mainFunc{x}\msin{x}dx = 
 		$$
 		
 		\begin{equation}
@@ -383,17 +415,17 @@ $$
 		
 		Таким образом, из \eqref{eq:4} получаем:
 		$$
-			\int\limits_0^\pi\mainFunc\sin(n - \frac{\beta}{2})xdx = 
+			\int\limits_0^\pi\mainFunc{x}\msin{x}dx = 
 		$$
 		
 		$$
-			\frac{\pi\Gamma(-\beta)}{2^{-\beta}}\Bigl[\frac{1}{\Gamma(1 - n)\Gamma(-\beta + n)} - 
-			\frac{1}{\Gamma(1 -\beta + n)\Gamma(- n)}\Bigr]
+			\frac{\pi\Gamma(-\beta)}{2^{-\beta}}\Bigg[\frac{1}{\Gamma(1 - n)\Gamma(-\beta + n)} - 
+			\frac{1}{\Gamma(1 -\beta + n)\Gamma(- n)}\Bigg]
 		$$
 		
 		Воспользуемся свойством гамма-функции: 
 		
-		Пусть $z$ - целое неотрицательное число, тогда
+		Пусть $z$ ~--- целое неотрицательное число, тогда
 		$$
 			\Gamma(1 - z)\Gamma(z) = \frac{\pi}{\sin\pi z}
 		$$
@@ -402,12 +434,13 @@ $$
 		$$
 		
 		\bigskip
-		Так как $n \geq 1$ имеем, что $\frac{1}{\Gamma(1 - n)\Gamma(-\beta + n)} = 0$ и
-		$\frac{1}{\Gamma(1 -\beta + n)\Gamma(- n)} = 0$. 
+		Так как $n \geq 1$ имеем, что 
+		$$\frac{1}{\Gamma(1 - n)\Gamma(-\beta + n)} = 0$$ и
+		$$\frac{1}{\Gamma(1 -\beta + n)\Gamma(- n)} = 0.$$ 
 		
 		Таким образом 
 		$$
-			\int\limits_0^\pi\mainFunc\sin(n - \frac{\beta}{2})xdx = 0, n = 1, 2, \ldots 
+			\int\limits_0^\pi\mainFunc{x}\msin{x}dx = 0, n = 1, 2, \ldots 
 		$$
 		
 	\end{proof}
@@ -418,7 +451,18 @@ $$
 	
 \chapter*{Заключение}
 \addcontentsline{toc}{chapter}{Заключение}
-	
+\begin{enumerate}
+	\item Доказана полнота системы $\msin{x}, n = 1, 2, \ldots$ при $\Real{\beta}\in(0, 1)$
+	\item Доказано, что система $\msin{x}, n = 1, 2, \ldots$ не является полной при $\Real{\beta}\in(-1, 0)$
+	\item Для случая $\Real{\beta}\in(-1, 0)$ найдена функция $f_0(x) \not\equiv 0$, для которой \\
+		$\int\limits_0^\pi f_0(x)\msin{x}dx = 0, \forall n = 1, 2, \ldots$
+\end{enumerate}
+
+\bigskip
+Дальнейшим развитием темы является рассмотрение значений параметра $\beta$ не вошедших в данную работу.
+Также остаются неисследованными вопросы о базисности системы 
+$\msin{x}, n = 1, 2, \ldots$ в пространстве $L_1(0, \pi)$
+
 \begin{thebibliography}{30}
 	\addcontentsline{toc}{chapter}{Литература}
 
