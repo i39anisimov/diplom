@@ -1,4 +1,4 @@
-﻿\documentclass[oneside, final, 14pt]{extreport}
+\documentclass[oneside, final, 14pt]{extreport}
 \usepackage{amsthm, amsfonts, amsmath, amssymb, amscd}
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -271,8 +271,8 @@ $$
 	\begin{theorem}
 		Пусть $f(x)$ интегрируема по Лебегу на $[0, \pi]$, выполнено условие
 		\eqref{eq:1} и $\beta\in(0, 1)$, тода $f(x)$ почти всюду равняется нулю. 
-		Если же  $\beta\in(-1, 0)$, то существует функция $f_0(x)$, причем
-		единственная, удовлетворяющая \eqref{eq:1} и равная $$f_0(x) = \mainFunc{x}.$$
+		Если же  $\beta\in(-1, 0)$, то существует функция $f_0(x)$, 
+		удовлетворяющая \eqref{eq:1} и равная $$f_0(x) = \mainFunc{x}.$$
 	\end{theorem}
 	
 	Основным результатом данной работы является обобщение результатов, полученных Е.~И.~Моисеевым 
@@ -282,11 +282,11 @@ $$
 	Рассмотрим систему синусов $$\sincoeffs, \beta\in\mathbb{C}$$
 	Тогда верно следующее:
 	\begin{theorem}
-		Пусть $f(x)$ интегрируема по Лебегу на $[0, \pi]$, выполнено условие
+		Пусть $f(x)$ интегрируема по Лебегу на $[0, \pi]$, выполнено условие 
 		\eqref{eq:1} и \thinspace $\Real\beta \in (0, 1)$, 
 		тода $f(x)$ почти всюду равняется нулю. Если же \thinspace  
 		$\Real\beta \in (-1, 0)$, то существует функция $f_0(x) \not\equiv 0$, 
-		причем единственная, удовлетворяющая \eqref{eq:1} и равная $$f_0(x) = \mainFunc{x}.$$
+		удовлетворяющая \eqref{eq:1} и равная $$f_0(x) = \mainFunc{x}.$$
 	\end{theorem}
 	
 	
@@ -395,7 +395,6 @@ $$
 		$$
 			\int\limits_0^\pi\mainFunc{x}\msin{x}dx = 
 		$$
-		
 		\begin{equation}
 			2\int\limits_0^\frac{\pi}{2}\cos(t)^{-\beta - 1}\sin(t)\sin(2n - \beta)tdt 
 			= \int\limits_0^\frac{\pi}{2}cos(t)^{-\beta-1}\bigl(\cos(at) - \cos(bt)\bigr)dt,	\tag{4} \label{eq:4}
@@ -461,7 +460,7 @@ $$
 \bigskip
 Дальнейшим развитием темы является рассмотрение значений параметра $\beta$ не вошедших в данную работу.
 Также остаются неисследованными вопросы о базисности системы 
-$\msin{x}, n = 1, 2, \ldots$ в пространстве $L_1(0, \pi)$
+$\msin{x}, n = 1, 2, \ldots$ в пространстве $L_1(0, \pi)$.
 
 \begin{thebibliography}{30}
 	\addcontentsline{toc}{chapter}{Литература}
